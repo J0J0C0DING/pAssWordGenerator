@@ -2,6 +2,7 @@
 let userInfo = {
   passLength: 0,
   chars: "",
+  password: "",
 };
 
 let chooseLength = function () {
@@ -37,9 +38,15 @@ let chooseChars = function () {
   if (specialConfirm) {
     userInfo.chars += ` !"#$%&'()*+,-./:;<=>?@[\]^_{|}~`;
   }
+
+  while (!lowercaseConfirm && !uppercaseConfirm && !numbericConfirm && !specialConfirm) {
+    alert("Please choose at least one of the prompts :)");
+    chooseChars();
+  }
 };
 
 function generatePassword() {
+  userInfo.password = "";
   alert("Your password generation is about to start. Please answer the following prompts");
 
   // Choose password length
@@ -48,6 +55,17 @@ function generatePassword() {
 
   chooseChars();
   console.log(userInfo.chars);
+
+  for (let i = 0; i <= userInfo.passLength - 1; i++) {
+    let randomNumber = Math.floor(Math.random() * userInfo.chars.length);
+    userInfo.password += userInfo.chars.substring(randomNumber, randomNumber + 1);
+
+    // Generating random combination for loop information used from
+  }
+
+  console.log(userInfo.password, userInfo.password.length);
+
+  return userInfo.password;
 }
 
 // Get references to the #generate element
