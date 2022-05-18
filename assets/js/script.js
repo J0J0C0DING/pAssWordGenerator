@@ -27,10 +27,10 @@ function chooseLength() {
 function chooseChars() {
   userInfo.chars = "";
   // Comfirm prompts
-  lowercaseConfirm = confirm("Do you want to include lowercase letters?");
-  uppercaseConfirm = confirm("Do you want to include uppercase letters?");
-  numbericConfirm = confirm("Do you want to include numbers?");
-  specialConfirm = confirm("Do you want to include special characters?");
+  let lowercaseConfirm = confirm("Do you want to include lowercase letters?");
+  let uppercaseConfirm = confirm("Do you want to include uppercase letters?");
+  let numbericConfirm = confirm("Do you want to include numbers?");
+  let specialConfirm = confirm("Do you want to include special characters?");
   // Check is prompts are true or false ---- if true, add char sets to userInfo.chars
   // Check lowercaseConfirm
   if (lowercaseConfirm) {
@@ -111,7 +111,7 @@ generateBtn.addEventListener("click", writePassword);
 // Password Validating Tests //////////////////
 var test = {
   haveLower: function (str) {
-    testLower = /[a-z]/;
+    const testLower = /[a-z]/;
     if (testLower.test(str)) {
       return true;
     } else {
@@ -120,7 +120,7 @@ var test = {
   },
 
   haveUpper: function (str) {
-    testUpper = /[A-Z]/;
+    const testUpper = /[A-Z]/;
     if (testUpper.test(str)) {
       return true;
     } else {
@@ -129,7 +129,7 @@ var test = {
   },
 
   haveNumber: function (str) {
-    testNumber = /[0-9]/;
+    const testNumber = /[0-9]/;
     if (testNumber.test(str)) {
       return true;
     } else {
@@ -138,7 +138,7 @@ var test = {
   },
 
   haveSpecial: function (str) {
-    testSpecial = specialChars;
+    const testSpecial = specialChars;
     if (testSpecial.test(str)) {
       return true;
     } else {
