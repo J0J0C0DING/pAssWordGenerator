@@ -8,14 +8,14 @@ This web application will generate a password based on user input using JavaScri
 ![Screenshot of Password Generator Application](./screenshots/password-generator-screenshot.png)
 
 ## Usage  
-1. Click Generate Password button
+### 1. Click Generate Password button
 ![Step 1](./screenshots/step-1.png)  
-2. Type desired password length (At least 8 and less than 128), click 'OK' or hit enter  
+### 2. Type desired password length (At least 8 and less than 128), click 'OK' or hit enter  
 ![Step 2](./screenshots/step-2.png)
-3. Answer prompts to choose characters to add (Cancel = Do NOT Include | OK = Include)
+### 3. Answer prompts to choose characters to add (Cancel = Do NOT Include | OK = Include)
 ![Step 3](./screenshots/step-3.png)
-4. Repeat step 3 until prompts are finished
-5. New password will appear in the box!
+### 4. Repeat step 3 until prompts are finished
+### 5. New password will appear in the box!
 ![Generator complete](./screenshots/step-5.png)
 
 ## Credits 
