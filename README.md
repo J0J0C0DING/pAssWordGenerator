@@ -7,6 +7,9 @@ This web application will generate a password based on user input using JavaScri
 
 ![Screenshot of Password Generator Application](./screenshots/password-generator-screenshot.png)
 
+## Deployed Application
+[https://j0j0c0ding.github.io/pAssWordGenerator/](https://j0j0c0ding.github.io/pAssWordGenerator/)
+
 ## Usage  
 ### 1. Click Generate Password button
 ![Step 1](./screenshots/step-1.png)  
