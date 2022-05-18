@@ -31,7 +31,6 @@ function chooseChars() {
   uppercaseConfirm = confirm("Do you want to include uppercase letters?");
   numbericConfirm = confirm("Do you want to include numbers?");
   specialConfirm = confirm("Do you want to include special characters?");
-
   // Check is prompts are true or false ---- if true, add char sets to userInfo.chars
   // Check lowercaseConfirm
   if (lowercaseConfirm) {
@@ -56,9 +55,23 @@ function chooseChars() {
   }
 }
 
+function newPass(passwordGen) {
+  userInfo.password = "";
+
+  for (let i = 0; i < userInfo.passLength; i++) {
+    // Generate random number based on length of userInfo.chars string
+    let randomNumber = Math.floor(Math.random() * userInfo.chars.length);
+    // For each iteration, select random character within userInfo.chars string
+    userInfo.password += userInfo.chars.substring(randomNumber, randomNumber + 1);
+    // Generating random combination for loop information used from
+    // https://www.programiz.com/javascript/examples/generate-random-strings
+  }
+  return passwordGen;
+}
+
 function generatePassword() {
   // Reset any password stored from last generatePassword() execution
-  userInfo.password = "";
+  // userInfo.password = "";
   // Let user know they will need to answer upcoming prompts
   alert("Your password generation is about to start. Please answer the following prompts");
 
@@ -70,21 +83,11 @@ function generatePassword() {
   console.log(userInfo.chars);
 
   // Generate password --- take desired passwordLength and start looping
-  for (let i = 0; i < userInfo.passLength; i++) {
-    // Generate random number based on length of userInfo.chars string
-    let randomNumber = Math.floor(Math.random() * userInfo.chars.length);
-    // For each iteration, select random character within userInfo.chars string
-    userInfo.password += userInfo.chars.substring(randomNumber, randomNumber + 1);
-    // Generating random combination for loop information used from
-    // https://www.programiz.com/javascript/examples/generate-random-strings
-  }
+  newPass();
 
-  console.log(userInfo.password, userInfo.password.length);
+  console.log(userInfo.password);
 
-  console.log("Have lowercase letters?", haveLower(userInfo.password));
-  console.log("Have uppercase letters?", haveUpper(userInfo.password));
-  console.log("Have numbers?", haveNumber(userInfo.password));
-  console.log("Have special characters?", haveSpecial(userInfo.password));
+  compare();
 
   return userInfo.password;
 }
@@ -98,55 +101,62 @@ function writePassword() {
   let passwordText = document.querySelector("#password");
 
   passwordText.value = password;
+  console.log(userInfo.password, userInfo.passLength);
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-// Trying to create tests
+// Tests //////////////////
+var test = {
+  haveLower: function (str) {
+    testLower = /[a-z]/;
+    if (testLower.test(str)) {
+      return true;
+    } else {
+      return false;
+    }
+  },
 
-var haveLower = function (str) {
-  testLower = /[a-z]/;
+  haveUpper: function (str) {
+    testUpper = /[A-Z]/;
+    if (testUpper.test(str)) {
+      return true;
+    } else {
+      return false;
+    }
+  },
 
-  if (testLower.test(str)) {
-    return true;
-  } else {
-    return false;
-  }
+  haveNumber: function (str) {
+    testNumber = /[0-9]/;
+    if (testNumber.test(str)) {
+      return true;
+    } else {
+      return false;
+    }
+  },
+
+  haveSpecial: function (str) {
+    testSpecial = specialChars;
+    if (testSpecial.test(str)) {
+      return true;
+    } else {
+      return false;
+    }
+  },
 };
 
-var haveUpper = function (str) {
-  testUpper = /[A-Z]/;
-
-  if (testUpper.test(userInfo.password)) {
-    return true;
-  } else {
-    return false;
+var compare = function () {
+  while (
+    test.haveLower(userInfo.chars) !== test.haveLower(userInfo.password) ||
+    test.haveUpper(userInfo.chars) !== test.haveUpper(userInfo.password) ||
+    test.haveNumber(userInfo.chars) !== test.haveNumber(userInfo.password) ||
+    test.haveSpecial(userInfo.chars) !== test.haveSpecial(userInfo.password)
+  ) {
+    newPass();
+    console.log(userInfo.password);
   }
 };
-
-var haveNumber = function (str) {
-  var testNumber = /[0-9]/;
-
-  if (testNumber.test(userInfo.password)) {
-    return true;
-  } else {
-    return false;
-  }
-};
-
-var haveSpecial = function (str) {
-  var testSpecial = specialChars;
-
-  if (testSpecial.test(userInfo.password)) {
-    return true;
-  } else {
-    return false;
-  }
-};
-
-// console.log(haveSpecial);
-
 // Figuring out how to test if generated password contains different character ranges
 // https://melvingeorge.me/blog/check-if-string-contains-atleast-one-letter-regex-javascript
 
