@@ -77,15 +77,15 @@ function generatePassword() {
 
   // Choose password length
   chooseLength();
-  console.log(userInfo.passLength);
+  console.log(`User-selected length: ${userInfo.passLength}`);
   // Choose character to include
   chooseChars();
-  console.log(userInfo.chars);
+  console.log(`User-selected characters: ${userInfo.chars}`);
 
   // Generate password --- take desired passwordLength and start looping
   newPass();
 
-  console.log(userInfo.password);
+  console.log(`Password 1st Attempt: ${userInfo.password}`);
 
   compare();
 
@@ -101,13 +101,13 @@ function writePassword() {
   let passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-  console.log(userInfo.password, userInfo.passLength);
+  console.log(`Password Final: ${userInfo.password} | Length: ${userInfo.passLength}`);
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-// Tests //////////////////
+// Password Validating Tests //////////////////
 var test = {
   haveLower: function (str) {
     testLower = /[a-z]/;
@@ -154,7 +154,7 @@ var compare = function () {
     test.haveSpecial(userInfo.chars) !== test.haveSpecial(userInfo.password)
   ) {
     newPass();
-    console.log(userInfo.password);
+    console.log(`Password nxt Attempt: ${userInfo.password}`);
   }
 };
 // Figuring out how to test if generated password contains different character ranges
